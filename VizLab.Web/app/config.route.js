@@ -40,7 +40,7 @@
                     }
                 }
             }, {
-                url: '/bar',
+                url: '/bar/:state',
                 config: {
                     title: 'bar',
                     templateUrl: 'app/charts/bar.html',
