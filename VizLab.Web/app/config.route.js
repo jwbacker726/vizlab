@@ -39,6 +39,16 @@
                         content: '<i class="fa fa-lock"></i> Admin'
                     }
                 }
+            }, {
+                url: '/bar',
+                config: {
+                    title: 'bar',
+                    templateUrl: 'app/charts/bar.html',
+                    settings: {
+                        nav: 3,
+                        content: '<i class="fa fa-bar-chart-o"></i> Bar Chart'
+                    }
+                }
             }
         ];
     }

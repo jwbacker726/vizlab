@@ -29,3 +29,5 @@
 /// <reference path="../app/services/datacontext.js" />
 /// <reference path="../app/services/directives.js" />
 /// <reference path="../app/common/bootstrap/bootstrap.dialog.js" />
+/// <reference path="../app/charts/bar.js" />
+/// <reference path="d3.js" />

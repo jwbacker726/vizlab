@@ -200,6 +200,7 @@
     <Content Include="app\admin\admin.html" />
     <Content Include="app\admin\admin.js" />
     <Content Include="app\app.js" />
+    <Content Include="app\charts\bar.js" />
     <Content Include="app\common\bootstrap\bootstrap.dialog.js" />
     <Content Include="app\common\common.js" />
     <Content Include="app\common\logger.js" />
@@ -215,6 +216,7 @@
     <Content Include="app\layout\sidebar.js" />
     <Content Include="app\layout\topnav.html" />
     <Content Include="app\layout\widgetheader.html" />
+    <Content Include="app\charts\bar.html" />
     <Content Include="app\services\datacontext.js" />
     <Content Include="app\services\directives.js" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -250,6 +252,7 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="index.html" />
+    <Content Include="LICENSE.txt" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
     <Content Include="Scripts\angular-route.js" />
@@ -269,6 +272,8 @@
     <Content Include="Scripts\angular-mocks.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\d3.js" />
+    <Content Include="Scripts\d3.min.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
     <Content Include="Scripts\jquery-2.1.1.min.map" />
