@@ -231,7 +231,8 @@
     <Content Include="Content\styles.css" />
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
-    <Content Include="Data\Sql\dbo.PopulationByAge.data.sql" />
+    <Content Include="Data\Scripts\dbo.PopulationByAge.data.sql" />
+    <Content Include="Data\Scripts\dbo.PopulationByAge.sql" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
