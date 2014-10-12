@@ -2,17 +2,27 @@
     'use strict';
 
     var serviceId = 'datacontext';
-    angular.module('app').factory(serviceId, ['common', datacontext]);
+    angular.module('app').factory(serviceId, ['common', '$http', datacontext]);
 
-    function datacontext(common) {
+    function datacontext(common, $http) {
         var $q = common.$q;
 
         var service = {
-            getPeople: getPeople,
-            getMessageCount: getMessageCount
+            getPopulationInfo: getPopulationInfo,
+            getMessageCount: getMessageCount,
+            getPeople: getPeople
         };
 
         return service;
+
+        function getPopulationInfo(state) {
+            var promise = $http.get('/api/population?state=' + state)
+            .then(function (response) {
+                return response.data;
+            })
+
+            return promise;
+        }
 
         function getMessageCount() { return $q.when(72); }
 

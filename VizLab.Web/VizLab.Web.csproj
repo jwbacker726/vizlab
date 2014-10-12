@@ -199,6 +199,7 @@
   <ItemGroup>
     <Content Include="app\admin\admin.html" />
     <Content Include="app\admin\admin.js" />
+    <Content Include="app\app.barchart.js" />
     <Content Include="app\app.js" />
     <Content Include="app\charts\bar.js" />
     <Content Include="app\common\bootstrap\bootstrap.dialog.js" />

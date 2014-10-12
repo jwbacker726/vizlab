@@ -1,4 +1,4 @@
-﻿(function() {
+﻿(function () {
     'use strict';
     var controllerId = 'bar';
     angular.module('app').controller(controllerId, ['common', 'datacontext', '$q', bar]);
@@ -14,9 +14,18 @@
 
         activate();
 
+        function loadData() {
+            datacontext.getPopulationInfo('Alabama')
+                .then(function (data) {
+                    vm.chartData = vm.chartData.concat(data);
+                });
+        }
+
         function activate() {
             common.activateController([], controllerId)
-                .then(function() { log('Activated Bar View'); });
+                .then(function () { log('Activated Bar View'); });
+
+            loadData();
         }
     }
 })();
