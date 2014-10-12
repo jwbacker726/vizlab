@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VizLab.Data", "VizLab.Data\VizLab.Data.csproj", "{D08F9FF3-3C20-4DF2-845B-A9E8CB54E890}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VizLab", "VizLab.Web\VizLab.csproj", "{F6B0CC2A-FAF2-4248-9039-C6456F6EAEB0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VizLab.Web", "VizLab.Web\VizLab.Web.csproj", "{F6B0CC2A-FAF2-4248-9039-C6456F6EAEB0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

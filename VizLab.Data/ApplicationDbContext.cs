@@ -10,17 +10,11 @@ namespace VizLab.Data
         {
         }
 
-        public DbSet<Dataset> Datasets { get; set; }
+        public DbSet<PopulationByAge> PopulationByAges { get; set; }
 
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();
         }
-    }
-
-    public class Dataset
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
     }
 }
