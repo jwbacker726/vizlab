@@ -29,7 +29,8 @@
             console.log("loading data for " + vm.selectedState);
             datacontext.getPopulationInfo(vm.selectedState)
                 .then(function (data) {
-                    vm.chartData = vm.chartData.concat(data);
+                    vm.maxPop = data.maxPop;
+                    vm.chartData = vm.chartData.concat(data.ageGroupInfos);
                 });
         }
 

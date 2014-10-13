@@ -16,33 +16,19 @@ namespace VizLab.Controllers
             _dbContext = dbContext;
         }
 
-        public List<AgeGroupInfo> Get(string state)
+        public SingleStatePopulationModel Get(string state)
         {
-            var rawResult = _dbContext.PopulationByAges.Single(p => p.State == state);
+            var all = _dbContext.PopulationByAges.ToList();
+            var rawResult = all.Single(p => p.State == state);
+            var maxPop = all.Select(a => a.Convert()).SelectMany(a => a).Max(a => a.CategoryValue);
 
-            var result = new List<AgeGroupInfo>
+            var result = rawResult.Convert();
+            return new SingleStatePopulationModel
             {
-                new AgeGroupInfo {CategoryType = CategoryType.NumberTpUnder5.ToHumanFriendly(), CategoryValue = rawResult.NumberTpUnder5},
-                new AgeGroupInfo {CategoryType = CategoryType.NumberTp5to9.ToHumanFriendly(), CategoryValue = rawResult.NumberTp5to9},
-                new AgeGroupInfo {CategoryType = CategoryType.NumberTp10to14.ToHumanFriendly(), CategoryValue = rawResult.NumberTp10to14},
-                new AgeGroupInfo {CategoryType = CategoryType.NumberTp15to19.ToHumanFriendly(), CategoryValue = rawResult.NumberTp15to19},
-                new AgeGroupInfo {CategoryType = CategoryType.NumberTp20to24.ToHumanFriendly(), CategoryValue = rawResult.NumberTp20to24},
-                new AgeGroupInfo {CategoryType = CategoryType.NumberTp25to29.ToHumanFriendly(), CategoryValue = rawResult.NumberTp25to29},
-                new AgeGroupInfo {CategoryType = CategoryType.NumberTp30to34.ToHumanFriendly(), CategoryValue = rawResult.NumberTp30to34},
-                new AgeGroupInfo {CategoryType = CategoryType.NumberTp35to39.ToHumanFriendly(), CategoryValue = rawResult.NumberTp35to39},
-                new AgeGroupInfo {CategoryType = CategoryType.NumberTp40to44.ToHumanFriendly(), CategoryValue = rawResult.NumberTp40to44},
-                new AgeGroupInfo {CategoryType = CategoryType.NumberTp45to49.ToHumanFriendly(), CategoryValue = rawResult.NumberTp45to49},
-                new AgeGroupInfo {CategoryType = CategoryType.NumberTp50to54.ToHumanFriendly(), CategoryValue = rawResult.NumberTp50to54},
-                new AgeGroupInfo {CategoryType = CategoryType.NumberTp55to59.ToHumanFriendly(), CategoryValue = rawResult.NumberTp55to59},
-                new AgeGroupInfo {CategoryType = CategoryType.NumberTp60to64.ToHumanFriendly(), CategoryValue = rawResult.NumberTp60to64},
-                new AgeGroupInfo {CategoryType = CategoryType.NumberTp65to69.ToHumanFriendly(), CategoryValue = rawResult.NumberTp65to69},
-                new AgeGroupInfo {CategoryType = CategoryType.NumberTp70to74.ToHumanFriendly(), CategoryValue = rawResult.NumberTp70to74},
-                new AgeGroupInfo {CategoryType = CategoryType.NumberTp75to79.ToHumanFriendly(), CategoryValue = rawResult.NumberTp75to79},
-                new AgeGroupInfo {CategoryType = CategoryType.NumberTp80to84.ToHumanFriendly(), CategoryValue = rawResult.NumberTp80to84},
-                new AgeGroupInfo {CategoryType = CategoryType.NumberTpOver85.ToHumanFriendly(), CategoryValue = rawResult.NumberTpOver85},
+                State = state,
+                AgeGroupInfos = result,
+                MaxPop = maxPop
             };
-
-            return result;
         }
 
         public List<PopulationByAge> Get()
@@ -50,6 +36,13 @@ namespace VizLab.Controllers
             var result = _dbContext.PopulationByAges.ToList();
             return result;
         }
+    }
+
+    public class SingleStatePopulationModel
+    {
+        public double MaxPop { get; set; }
+        public List<AgeGroupInfo> AgeGroupInfos { get; set; }
+        public string State { get; set; }
     }
 
     public enum CategoryType
@@ -82,6 +75,33 @@ namespace VizLab.Controllers
 
     public static class EnumExtentions
     {
+        public static List<AgeGroupInfo> Convert(this PopulationByAge source)
+        {
+            var result = new List<AgeGroupInfo>
+            {
+                new AgeGroupInfo {CategoryType = CategoryType.NumberTpUnder5.ToHumanFriendly(), CategoryValue = source.NumberTpUnder5},
+                new AgeGroupInfo {CategoryType = CategoryType.NumberTp5to9.ToHumanFriendly(), CategoryValue = source.NumberTp5to9},
+                new AgeGroupInfo {CategoryType = CategoryType.NumberTp10to14.ToHumanFriendly(), CategoryValue = source.NumberTp10to14},
+                new AgeGroupInfo {CategoryType = CategoryType.NumberTp15to19.ToHumanFriendly(), CategoryValue = source.NumberTp15to19},
+                new AgeGroupInfo {CategoryType = CategoryType.NumberTp20to24.ToHumanFriendly(), CategoryValue = source.NumberTp20to24},
+                new AgeGroupInfo {CategoryType = CategoryType.NumberTp25to29.ToHumanFriendly(), CategoryValue = source.NumberTp25to29},
+                new AgeGroupInfo {CategoryType = CategoryType.NumberTp30to34.ToHumanFriendly(), CategoryValue = source.NumberTp30to34},
+                new AgeGroupInfo {CategoryType = CategoryType.NumberTp35to39.ToHumanFriendly(), CategoryValue = source.NumberTp35to39},
+                new AgeGroupInfo {CategoryType = CategoryType.NumberTp40to44.ToHumanFriendly(), CategoryValue = source.NumberTp40to44},
+                new AgeGroupInfo {CategoryType = CategoryType.NumberTp45to49.ToHumanFriendly(), CategoryValue = source.NumberTp45to49},
+                new AgeGroupInfo {CategoryType = CategoryType.NumberTp50to54.ToHumanFriendly(), CategoryValue = source.NumberTp50to54},
+                new AgeGroupInfo {CategoryType = CategoryType.NumberTp55to59.ToHumanFriendly(), CategoryValue = source.NumberTp55to59},
+                new AgeGroupInfo {CategoryType = CategoryType.NumberTp60to64.ToHumanFriendly(), CategoryValue = source.NumberTp60to64},
+                new AgeGroupInfo {CategoryType = CategoryType.NumberTp65to69.ToHumanFriendly(), CategoryValue = source.NumberTp65to69},
+                new AgeGroupInfo {CategoryType = CategoryType.NumberTp70to74.ToHumanFriendly(), CategoryValue = source.NumberTp70to74},
+                new AgeGroupInfo {CategoryType = CategoryType.NumberTp75to79.ToHumanFriendly(), CategoryValue = source.NumberTp75to79},
+                new AgeGroupInfo {CategoryType = CategoryType.NumberTp80to84.ToHumanFriendly(), CategoryValue = source.NumberTp80to84},
+                new AgeGroupInfo {CategoryType = CategoryType.NumberTpOver85.ToHumanFriendly(), CategoryValue = source.NumberTpOver85},
+            };
+
+            return result;  
+        }
+
         public static string ToHumanFriendly(this CategoryType categoryType)
         {
             switch (categoryType)

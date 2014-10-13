@@ -11,6 +11,7 @@
         var data;
         var width = 900;
         var height = 500;
+        var maxPop;
         var margin = { top: 10, bottom: 10, right: 10, left: 10 };
         var dispatch = d3.dispatch(chart, "hover");
 
@@ -28,6 +29,7 @@
             });
 
             var yScale = d3.scale.linear()
+//                .domain([0, maxPop])
                 .domain([0, maxPopulation])
                 .range([0, height - margin.top - margin.bottom]);
 
@@ -45,10 +47,6 @@
 
             rects
                 .attr({
-                    height: function (d, i) {
-                        var w = yScale(d.categoryValue);
-                        return w;
-                    },
                     width: function (d, i) {
                         return 20;
                     },
@@ -56,18 +54,18 @@
                         var x = i * (width / data.length);
                         return x;
                     },
-                    y: function (d, i) {
-                        return height - yScale(d.categoryValue);
-                    },
                     fill: 'green'
                 });
 
-            rects.transition() //NOT WORKING! :((
-                .duration(2000)
+            rects.transition() 
+                .duration(350)
                 .attr({
                     height: function (d, i) {
                         var w = yScale(d.categoryValue);
                         return w;
+                    },
+                    y: function (d, i) {
+                        return height - yScale(d.categoryValue);
                     }
                 });
 
@@ -97,14 +95,22 @@
             data = value;
             return chart;
         }
+
         chart.width = function (value) {
             if (!arguments.length) return width;
             width = value;
             return chart;
         }
+
         chart.height = function (value) {
             if (!arguments.length) return height;
             height = value;
+            return chart;
+        }
+
+        chart.maxPop = function(value) {
+            if (!arguments.length) return maxPop;
+            maxPop = value;
             return chart;
         }
 
@@ -148,11 +154,18 @@
             link: function (scope, elem, attrs) {
                 var exp = $parse(attrs.chartData);
                 var data = exp(scope);
+
+                var maxPopExp = $parse(attrs.maxPop);
+
                 var chart = drawChart($window.d3, data);
                 scope.$watchCollection(exp, function (newVal, oldVal) {
                     if (newVal && newVal.length > 0) {
+                        var maxPop = maxPopExp(scope);
+
                         console.log('updating chart');
-                        chart.data(newVal);
+                        chart.data(newVal)
+                            .maxPop(maxPop);
+
                         chart.update();
                     }
                 });

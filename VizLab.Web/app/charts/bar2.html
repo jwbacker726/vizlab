@@ -2,6 +2,6 @@
     <section class="matter">
         <h3>{{vm.state}}</h3>
         <select ng-model="vm.selectedState" ng-options="state for state in vm.states"></select>
-        <div data-bar-chart data-chart-data="vm.chartData"></div>
+        <div data-bar-chart data-chart-data="vm.chartData" data-max-pop="vm.maxPop"></div>
     </section>
 </section>
