@@ -10,10 +10,20 @@
         var service = {
             getPopulationInfo: getPopulationInfo,
             getMessageCount: getMessageCount,
-            getPeople: getPeople
+            getPeople: getPeople,
+            getStates: getStates
         };
 
         return service;
+
+        function getStates() {
+            var promise = $http.get('/api/states')
+                .then(function (resposne) {
+                    return resposne.data;
+                });
+
+            return promise;
+        }
 
         function getPopulationInfo(state) {
             var promise = $http.get('/api/population?state=' + state)

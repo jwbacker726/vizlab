@@ -32,3 +32,4 @@
 /// <reference path="../app/charts/bar.js" />
 /// <reference path="d3.js" />
 /// <reference path="../app/app.barchart.js" />
+/// <reference path="../app/charts/bar2.js" />

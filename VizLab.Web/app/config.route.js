@@ -49,6 +49,16 @@
                         content: '<i class="fa fa-bar-chart-o"></i> Bar Chart'
                     }
                 }
+            }, {
+                url: '/bar2',
+                config: {
+                    title: 'anotherbar2',
+                    templateUrl: 'app/charts/bar2.html',
+                    settings: {
+                        nav: 4,
+                        content: '<i class="fa fa-bar-chart-o"></i> Bar Chart 2'
+                    }
+                }
             }
         ];
     }

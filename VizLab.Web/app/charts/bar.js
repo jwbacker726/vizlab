@@ -3,14 +3,14 @@
     var controllerId = 'bar';
     angular.module('app').controller(controllerId, ['common', 'datacontext', '$q', '$routeParams', bar]);
 
-    // http://www.sitepoint.com/creating-charting-directives-using-angularjs-d3-js/
-
     function bar(common, datacontext, $q, $routeParams) {
+        console.warn('constructing bar');
         var getLogFn = common.logger.getLogFn;
         var log = getLogFn(controllerId);
         var vm = this;
 
         vm.chartData = [];
+        vm.state = $routeParams.state;
 
         activate();
 
@@ -23,6 +23,7 @@
         }
 
         function activate() {
+            console.log('activating view');
             common.activateController([], controllerId)
                 .then(function () { log('Activated Bar View'); });
 
