@@ -16,7 +16,6 @@
 
         function chart(container) {
             g = container;
-
             update();
         }
 
@@ -37,11 +36,14 @@
                     return d.categoryType;
                 });
 
-            var enteredRects = rects.enter().append("rect");
+            rects
+                .enter()
+                .append("rect")
+                .classed('item', true);
 
-            enteredRects
-                .classed('item', true)
-                .transition()
+            rects.exit().remove();
+
+            rects
                 .attr({
                     height: function (d, i) {
                         var w = yScale(d.categoryValue);
@@ -60,9 +62,14 @@
                     fill: 'green'
                 });
 
-            var exited = rects.exit();
-
-            exited.transition().remove();
+            rects.transition() //NOT WORKING! :((
+                .duration(2000)
+                .attr({
+                    height: function (d, i) {
+                        var w = yScale(d.categoryValue);
+                        return w;
+                    }
+                });
 
             g.selectAll("text")
                 .data(data)
