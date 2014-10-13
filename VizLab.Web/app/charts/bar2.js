@@ -14,9 +14,11 @@
         vm.states = [];
         vm.selectedState = "";
         vm.chartData = [];
+        vm.state = "none";
 
-        $scope.$watch('vm.selectedState', function () {
+        $scope.$watch('vm.selectedState', function (s) {
             loadData();
+            vm.state = s[0];
         }, false);
 
         activate();

@@ -3,7 +3,6 @@
 
     var app = angular.module('app');
 
-    // new
     if (!d3.chart) d3.chart = {};
 
     d3.chart.barchart = function () {
@@ -117,8 +116,6 @@
         return d3.rebind(chart, dispatch, "on");
     }
 
-    // endnew
-
     function drawChart(d3, data) {
 
         var height = 500;
@@ -130,10 +127,11 @@
             .attr("width", width + margin.right + margin.left)
             .attr("height", height + margin.top + margin.bottom);
 
-        svg.append("rect")
-            .attr("width", "100%")
-            .attr("height", "100%")
-            .attr("fill", "pink");
+        // Guide
+//        svg.append("rect")
+//            .attr("width", "100%")
+//            .attr("height", "100%")
+//            .attr("fill", "pink");
 
         var g = svg.append("g")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
